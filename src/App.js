@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Calendar from './components/Calendar'
+
+import styled from 'styled-components';
+import Header from './components/Header';
+
+const AppContainer = styled.div`
+  height: 100vh;
+  box-sizing: border-box;
+
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <div className="container">
+        <div className="wrapper">
+          <Header />
+          <Calendar />
+        </div>
+      </div>
+    </AppContainer>
   );
 }
 
