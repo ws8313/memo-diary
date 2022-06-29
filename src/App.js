@@ -1,4 +1,4 @@
-import Calendar from './components/Calendar'
+import Main from './components/Main'
 
 import styled from 'styled-components';
 import Header from './components/Header';
@@ -26,7 +26,7 @@ function App() {
       <div className="container">
         <div className="wrapper">
           <Header />
-          <Calendar />
+          <Main />
         </div>
       </div>
     </AppContainer>
