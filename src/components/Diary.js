@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import styled from "styled-components";
@@ -21,9 +21,11 @@ const Wrapper = styled.div`
   textarea {
     width: 100%;
     height: 25rem;
+    padding: 0 0.4rem;
+    box-sizing: border-box;
 
     font-size: 1.5rem;
-    line-height: 1.85rem;
+    line-height: 1.95rem;
     outline: none;
 
     resize: none;
@@ -31,30 +33,53 @@ const Wrapper = styled.div`
 
     /* background-attachment: local; */
     background-image:
-      repeating-linear-gradient(white, white 1.8rem, #ccc 1.8rem, #ccc 1.85rem);
+      repeating-linear-gradient(white, white 1.85rem, #ccc 1.85rem, #ccc 1.95rem);
   }
 `;
 
 const Diary = () => {
   const location = useLocation();
-  const today = location.state.split('. ');
-  const today_year = today[0];
-  const today_month = today[1];
-  const today_date = today[2];
-  const today_day = today[4];
+  const selectday = location.state.split('. ');
+  const selectday_year = selectday[0];
+  const selectday_month = selectday[1];
+  const selectday_date = selectday[2];
+  const selectday_day = selectday[4];
+  const title = `${selectday_year}년 ${selectday_month}월 ${selectday_date}일 ${selectday_day}요일`;
+  
+  const [content, setContent] = useState(JSON.parse(localStorage.getItem(title)));
+
+
+  const ChangeHandler = (e) => {
+    setContent(e.target.value)
+    // localStorage.setItem(title, content);
+  }
 
   useEffect(() => {
-    console.log(location.state);
-    console.log(today);
-  }, [])
+    if ((localStorage.getItem(title) === null)) {
+      localStorage.removeItem(title);
+      console.log("로컬 스토리지 삭제!")
+    }
+    localStorage.setItem(title, JSON.stringify(content));
+    console.log(content);
+    console.log(title);
+    console.log(JSON.parse(localStorage.getItem(title)) === null);
+    console.log(content === null);
+  }, [content])
+
+
   return (
     <Wrapper>
         <div className="title">
-          {today_year}년 {today_month}월 {today_date}일 {today_day}요일
+          {title}
         </div>
         <div>
           <textarea 
             placeholder='내용을 입력해 주세요'
+            spellCheck="false"
+            value={
+              content === null ? "" : content
+            }
+            onChange={ChangeHandler}
           />
         </div>
     </Wrapper>

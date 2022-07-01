@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css'
@@ -66,12 +66,10 @@ const Main = () => {
 
   const ChangeHandler = (nextValue, event) => {
     setValue(nextValue);
-    console.log(nextValue, event);
   }
 
   const ClickHandler = (value, event) => {
     setValue(value);
-    console.log(value, event);
     
     navigate('/DairyPage', { state: `${value.toLocaleString("ko-kr")} . ${weeks[value.getDay()]}` });
   }
