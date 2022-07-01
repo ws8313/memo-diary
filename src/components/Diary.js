@@ -39,33 +39,24 @@ const Wrapper = styled.div`
 
 const Diary = () => {
   const location = useLocation();
+  
   const selectday = location.state.split('. ');
   const selectday_year = selectday[0];
-  const selectday_month = selectday[1];
-  const selectday_date = selectday[2];
+  const selectday_month = (selectday[1].length === 1) ? `0${selectday[1]}` : selectday[1];
+  const selectday_date = (selectday[2].length === 1) ? `0${selectday[2]}` : selectday[2];;
   const selectday_day = selectday[4];
   const title = `${selectday_year}년 ${selectday_month}월 ${selectday_date}일 ${selectday_day}요일`;
+  const key = `${selectday_year}. ${selectday_month}. ${selectday_date}`
   
-  const [content, setContent] = useState(JSON.parse(localStorage.getItem(title)));
-
+  const [content, setContent] = useState(JSON.parse(localStorage.getItem(key)));
 
   const ChangeHandler = (e) => {
-    setContent(e.target.value)
-    // localStorage.setItem(title, content);
+    setContent(e.target.value);
   }
 
   useEffect(() => {
-    if ((localStorage.getItem(title) === null)) {
-      localStorage.removeItem(title);
-      console.log("로컬 스토리지 삭제!")
-    }
-    localStorage.setItem(title, JSON.stringify(content));
-    console.log(content);
-    console.log(title);
-    console.log(JSON.parse(localStorage.getItem(title)) === null);
-    console.log(content === null);
-  }, [content])
-
+    localStorage.setItem(key, JSON.stringify(content));
+  }, [content, key, title])
 
   return (
     <Wrapper>
@@ -76,9 +67,7 @@ const Diary = () => {
           <textarea 
             placeholder='내용을 입력해 주세요'
             spellCheck="false"
-            value={
-              content === null ? "" : content
-            }
+            value={content === null ? undefined : content}
             onChange={ChangeHandler}
           />
         </div>

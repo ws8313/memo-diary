@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import Calendar from "react-calendar";
+import moment from "moment";
 import 'react-calendar/dist/Calendar.css'
 import styled from "styled-components";
 
@@ -45,42 +46,54 @@ const Wrapper = styled.div`
     height: 4rem;
     font-size: 1.4rem;
   }
+
+  .diaryDay {
+    background-color: #ccc;
+  }
+
 `;
 
 const Main = () => {
   const [value, setValue] = useState(new Date());
 
   const weeks = ['일', '월', '화', '수', '목', '금', '토'];
-  
-  const year = value.getFullYear();
-  const month = value.getMonth();
-  const date = value.getDate();
-  const day = weeks[value.getDay()];
+
+  const diaryDay = [];
 
   const navigate = useNavigate();
-
   useEffect(() => {
-    console.log(weeks[value.getDay()]);
-    console.log(value.toLocaleString("ko-kr"));
   }, [value])
 
-  const ChangeHandler = (nextValue, event) => {
+  const ChangeHandler = (nextValue) => {
     setValue(nextValue);
   }
 
   const ClickHandler = (value, event) => {
     setValue(value);
-    
+
     navigate('/DairyPage', { state: `${value.toLocaleString("ko-kr")} . ${weeks[value.getDay()]}` });
   }
   
+  for (let i = 0; i < localStorage.length; i++) {
+    const keys = localStorage.key(i);
+    const values = JSON.parse(localStorage.getItem(keys));
+    if (values !== null && values !== "") {
+      diaryDay.push(keys);
+    }
+  };
 
   return (
     <Wrapper>
-      <Calendar 
+      <Calendar
         onChange={ChangeHandler}
         value={value}
         onClickDay={ClickHandler}
+        tileClassName={({ date, view }) => {
+          // console.log(moment(date).format("YYYY. MM. DD"))
+          if (diaryDay.find((x) => x === moment(date).format("YYYY. MM. DD"))) {
+            return "diaryDay";
+          }
+        }}
         // formatDay={(locale, date) =>
         //   date.toLocaleString("en", { day: "numeric" })
         // }
@@ -88,7 +101,6 @@ const Main = () => {
         //   date.toLocaleString("en", { weekday: "short" })
         // }
       />
-      {/* { value.toString() === undefined ? <div> 선택한 날짜: 없음 </div> : <div> 선택한 날짜: {value.toString()}</div> } */}
     </Wrapper>
   )
 }
