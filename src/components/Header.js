@@ -1,17 +1,16 @@
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* flex-direction: column; */
   text-align: center;
 
   width: 100%;
   height: 4rem;
 
-  /* background-color: #424245;
-  color: white; */
   border-bottom: 1px solid black;
 
   .header {
@@ -32,8 +31,15 @@ const Wrapper = styled.div`
       height: 100%;
       font-size: 1.2rem;
       font-weight: bold;
+      
+      a {
+        text-decoration: none;
+        color: black;
+        font-size: 2rem;
+      }
     }
   }
+
 `;
 
 const Header = () => {
@@ -49,13 +55,8 @@ const Header = () => {
   return (
     <Wrapper>
       <header className="header">
-        {/* <nav className="home">
-          <button>메뉴</button>
-        </nav> */}
         <div className="title">
-          {/* <p>{today.year}년</p>
-          <p>{today.month}월</p> */}
-          <h1>메모 {`&`} 다이어리</h1>
+          <Link to="/">메모 {`&`} 다이어리</Link>
         </div>
       </header>
     </Wrapper>

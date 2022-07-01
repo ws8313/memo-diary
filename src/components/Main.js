@@ -1,31 +1,16 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css'
 import styled from "styled-components";
 
-const Main = () => {
-  const [value, onChange] = useState(new Date());
-
-  return (
-    <Wrapper>
-      <Calendar 
-        onChange={onChange}
-        value={value}
-      />
-    </Wrapper>
-  )
-}
-
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  /* border: 1px solid black; */
-  border-top: none;
 
   .react-calendar {
   width: 100%;
   background: white;
-  /* border: 1px solid black; */
   border: none;
   font-family: 'Nanum Pen Script', Arial, Helvetica, sans-serif;
   line-height: 1.125em;
@@ -60,8 +45,54 @@ const Wrapper = styled.div`
     height: 4rem;
     font-size: 1.4rem;
   }
-
-  
 `;
+
+const Main = () => {
+  const [value, setValue] = useState(new Date());
+
+  const weeks = ['일', '월', '화', '수', '목', '금', '토'];
+  
+  const year = value.getFullYear();
+  const month = value.getMonth();
+  const date = value.getDate();
+  const day = weeks[value.getDay()];
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(weeks[value.getDay()]);
+    console.log(value.toLocaleString("ko-kr"));
+  }, [value])
+
+  const ChangeHandler = (nextValue, event) => {
+    setValue(nextValue);
+    console.log(nextValue, event);
+  }
+
+  const ClickHandler = (value, event) => {
+    setValue(value);
+    console.log(value, event);
+    
+    navigate('/DairyPage', { state: `${value.toLocaleString("ko-kr")} . ${weeks[value.getDay()]}` });
+  }
+  
+
+  return (
+    <Wrapper>
+      <Calendar 
+        onChange={ChangeHandler}
+        value={value}
+        onClickDay={ClickHandler}
+        // formatDay={(locale, date) =>
+        //   date.toLocaleString("en", { day: "numeric" })
+        // }
+        // formatShortWeekday={(locale, date) =>
+        //   date.toLocaleString("en", { weekday: "short" })
+        // }
+      />
+      {/* { value.toString() === undefined ? <div> 선택한 날짜: 없음 </div> : <div> 선택한 날짜: {value.toString()}</div> } */}
+    </Wrapper>
+  )
+}
 
 export default Main;

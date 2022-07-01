@@ -1,7 +1,9 @@
-import Main from './components/Main'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import MainPage from './pages/MainPage';
 
 import styled from 'styled-components';
-import Header from './components/Header';
+import DiaryPage from './pages/DiaryPage';
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -25,8 +27,12 @@ function App() {
     <AppContainer>
       <div className="container">
         <div className="wrapper">
-          <Header />
-          <Main />
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<MainPage />}/>
+              <Route path='/DairyPage' element={<DiaryPage />} />
+            </Routes>
+          </BrowserRouter>
         </div>
       </div>
     </AppContainer>
