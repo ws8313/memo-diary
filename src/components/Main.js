@@ -21,7 +21,7 @@ const Wrapper = styled.div`
     margin-bottom: 0;
 
     .react-calendar__navigation__label, .react-calendar__navigation__arrow {
-      font-size: 1.4rem;
+      font-size: 2rem;
       font-weight: bold;
     }
   }
