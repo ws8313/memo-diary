@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   .react-calendar__navigation {
     height: 5rem;
     margin-bottom: 0;
+    color: black;
 
     .react-calendar__navigation__label, .react-calendar__navigation__arrow {
       font-size: 2rem;
@@ -36,8 +37,9 @@ const Wrapper = styled.div`
     }
   }
   .react-calendar__tile {
-    height: 5.3rem;
+    height: 5.1rem;
     font-size: 1.6rem;
+    color: black;
   }
 
   .best {

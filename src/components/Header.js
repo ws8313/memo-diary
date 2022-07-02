@@ -37,7 +37,7 @@ const Wrapper = styled.div`
       outline: 0;
       color: black;
       background-color: transparent;
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: bold;
       cursor: pointer;
     }

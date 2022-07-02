@@ -28,6 +28,7 @@ const Wrapper = styled.div`
         outline: 0;
         font-size: 1.5rem;
         text-align: center;
+        color: black;
       }
     }
 
@@ -51,7 +52,7 @@ const Wrapper = styled.div`
 
   textarea {
     width: 100%;
-    height: 31rem;
+    height: 30rem;
     padding: 0 0.4rem;
     box-sizing: border-box;
 
