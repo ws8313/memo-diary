@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin: 1rem 0;
     padding: 0 0.4rem;
     height: 3rem;
 
@@ -50,7 +51,7 @@ const Wrapper = styled.div`
 
   textarea {
     width: 100%;
-    height: 25rem;
+    height: 31rem;
     padding: 0 0.4rem;
     box-sizing: border-box;
 

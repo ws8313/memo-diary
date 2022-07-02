@@ -15,9 +15,9 @@ const Wrapper = styled.div`
     justify-content: center;
     text-align: center;
 
-    height: 4rem;
+    height: 5rem;
 
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 
     .menu {
       flex: 1;

@@ -17,7 +17,8 @@ const Wrapper = styled.div`
   }
 
   .react-calendar__navigation {
-    height: 4rem;
+    height: 5rem;
+    margin-bottom: 0;
 
     .react-calendar__navigation__label, .react-calendar__navigation__arrow {
       font-size: 1.4rem;
@@ -26,8 +27,8 @@ const Wrapper = styled.div`
   }
 
   .react-calendar__month-view__weekdays {
-    height: 4rem;
-    font-size: 1.6rem;
+    height: 5rem;
+    font-size: 1.8rem;
     align-items: center;
 
     & abbr {
@@ -35,9 +36,8 @@ const Wrapper = styled.div`
     }
   }
   .react-calendar__tile {
-    font-family: 'Nanum Pen Script', Arial, Helvetica, sans-serif;
-    height: 4rem;
-    font-size: 1.4rem;
+    height: 5.3rem;
+    font-size: 1.6rem;
   }
 
   .best {
