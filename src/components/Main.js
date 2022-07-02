@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import Calendar from "react-calendar";
 import moment from "moment";
@@ -13,20 +13,13 @@ const Wrapper = styled.div`
   width: 100%;
   background: white;
   border: none;
-  font-family: 'Nanum Pen Script', Arial, Helvetica, sans-serif;
   line-height: 1.125em;
   }
 
   .react-calendar__navigation {
     height: 4rem;
 
-    .react-calendar__navigation__label {
-      font-family: 'Nanum Pen Script', Arial, Helvetica, sans-serif;
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-
-    .react-calendar__navigation__arrow {
+    .react-calendar__navigation__label, .react-calendar__navigation__arrow {
       font-size: 1.4rem;
       font-weight: bold;
     }
@@ -47,10 +40,25 @@ const Wrapper = styled.div`
     font-size: 1.4rem;
   }
 
-  .diaryDay {
-    background-color: #ccc;
+  .best {
+    background-color: #64c96499;
   }
 
+  .good {
+    background-color: #9dd77299;
+  }
+
+  .normal {
+    background-color: #fdce1799;
+  }
+
+  .bad {
+    background-color: #fd844699;
+  }
+
+  .worst {
+    background-color: #fd565f99;
+  }
 `;
 
 const Main = () => {
@@ -61,45 +69,53 @@ const Main = () => {
   const diaryDay = [];
 
   const navigate = useNavigate();
-  useEffect(() => {
-  }, [value])
 
-  const ChangeHandler = (nextValue) => {
-    setValue(nextValue);
+  const ClickHandler = (value) => {
+    navigate('/DairyPage', { state: `${value.toLocaleString("ko-kr")} . ${weeks[value.getDay()]}` });
   }
 
-  const ClickHandler = (value, event) => {
-    setValue(value);
-
-    navigate('/DairyPage', { state: `${value.toLocaleString("ko-kr")} . ${weeks[value.getDay()]}` });
+  const diaryEmotion = (date) => {
+    const keys = moment(date).format("YYYY. MM. DD");
+    const values = JSON.parse(localStorage.getItem(keys));
+    const emotions = values.emotion;
+    if (emotions === "최고") {
+      return "best";
+    } else if (emotions === "좋음") {
+      return "good";
+    } else if (emotions === "보통") {
+      return "normal";
+    } else if (emotions === "나쁨") {
+      return "bad";
+    } else {
+      return "worst";
+    }
   }
   
   for (let i = 0; i < localStorage.length; i++) {
     const keys = localStorage.key(i);
     const values = JSON.parse(localStorage.getItem(keys));
-    if (values !== null && values !== "") {
-      diaryDay.push(keys);
+    const contents = values.content;
+    const emotions = values.emotion;
+    if (contents !== null && contents !== "") {
+      diaryDay.push({
+        key: keys,
+        content: contents,
+        emotion: emotions,
+      });
     }
   };
 
   return (
     <Wrapper>
       <Calendar
-        onChange={ChangeHandler}
+        onChange={setValue}
         value={value}
         onClickDay={ClickHandler}
         tileClassName={({ date, view }) => {
-          // console.log(moment(date).format("YYYY. MM. DD"))
-          if (diaryDay.find((x) => x === moment(date).format("YYYY. MM. DD"))) {
-            return "diaryDay";
+          if (diaryDay.find((x) => x.key === moment(date).format("YYYY. MM. DD"))) {
+            return diaryEmotion(date);
           }
         }}
-        // formatDay={(locale, date) =>
-        //   date.toLocaleString("en", { day: "numeric" })
-        // }
-        // formatShortWeekday={(locale, date) =>
-        //   date.toLocaleString("en", { weekday: "short" })
-        // }
       />
     </Wrapper>
   )
