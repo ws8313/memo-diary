@@ -83,7 +83,7 @@ const Main = () => {
 
   const navigate = useNavigate();
 
-  const ClickHandler = (value) => {
+  const clickHandler = (value) => {
     navigate('/DairyPage', { state: `${value.toLocaleString("ko-kr")} . ${weeks[value.getDay()]}` });
   }
 
@@ -123,7 +123,7 @@ const Main = () => {
       <Calendar
         onChange={setValue}
         value={value}
-        onClickDay={ClickHandler}
+        onClickDay={clickHandler}
         tileClassName={({ date, view }) => {
           if (diaryDay.find((x) => x.key === moment(date).format("YYYY. MM. DD"))) {
             return diaryEmotion(date);

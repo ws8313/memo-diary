@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 import styled from "styled-components";
 
@@ -113,13 +114,20 @@ const Diary = () => {
 
   const diaryContentString = JSON.stringify(diaryContent);
 
-  const TextChangeHandler = (e) => {
+  const textChangeHandler = (e) => {
     setContent(e.target.value);
   }
 
-  const EmotionChangeHandler = (e) => {
+  const emotionChangeHandler = (e) => {
     setEmotion(e.target.value);
   }
+
+  const clickHandler = () => {
+    axios.get("http://localhost:8000/", {})
+    .then(() => {
+      alert("완료");
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem(key, diaryContentString);
@@ -129,10 +137,10 @@ const Diary = () => {
     <Wrapper>
         <div className="title">
           <div className='save-container'>
-            {/* <button 
+            <button 
               className='save'
-              onClick={EmotionSave}
-            >저장</button> */}
+              onClick={clickHandler}
+            >저장</button>
           </div>
           <div className='today'>
             {title}
@@ -140,7 +148,7 @@ const Diary = () => {
           <div className='emotion-container'>
             <select 
               className='emotion'
-              onChange={EmotionChangeHandler}
+              onChange={emotionChangeHandler}
               defaultValue={emotion}
             >
               <option>최고</option>
@@ -158,7 +166,7 @@ const Diary = () => {
 작성 중인 일기 내용은 자동으로 저장됩니다.`}
             spellCheck="false"
             value={values === null ? undefined : content}
-            onChange={TextChangeHandler}
+            onChange={textChangeHandler}
           />
         </div>
     </Wrapper>
