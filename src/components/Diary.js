@@ -50,10 +50,14 @@ const Wrapper = styled.div`
       }
     }
   }
+  
+  .textarea-Container {
+    height: 29rem;
+  }
 
   textarea {
     width: 100%;
-    height: 29rem;
+    height: 100%;
     padding: 0 0.4rem;
     box-sizing: border-box;
 
@@ -159,7 +163,7 @@ const Diary = () => {
             </select>
           </div>
         </div>
-        <div>
+        <div className='textarea-Container'>
           <textarea 
             placeholder={`위의 "메뉴 & 다이어리" 클릭하면 달력 화면으로 넘어갑니다.
 작성된 일기 내용이 없으면 선택한 감정과 일기 내용은 초기화됩니다.
