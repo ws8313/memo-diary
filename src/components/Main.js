@@ -106,19 +106,20 @@ const Main = () => {
     }
   }
   
-  for (let i = 0; i < localStorage.length; i++) {
-    const keys = localStorage.key(i);
-    const values = JSON.parse(localStorage.getItem(keys));
-    const contents = values.content;
-    const emotions = values.emotion;
-    if (contents !== null && contents !== "") {
-      diaryDay.push({
-        key: keys,
-        content: contents,
-        emotion: emotions,
-      });
-    }
-  };
+  // for (let i = 0; i < localStorage.length; i++) {
+  //   const keys = localStorage.key(i);
+  //   const values = JSON.parse(localStorage.getItem(keys));
+  //   const contents = values.content;
+  //   const emotions = values.emotion;
+    
+  //   if (contents !== null && contents !== "") {
+  //     diaryDay.push({
+  //       key: keys,
+  //       content: contents,
+  //       emotion: emotions,
+  //     });
+  //   }
+  // };
 
   useEffect(() => {
     const getDiary = () => {
@@ -130,10 +131,10 @@ const Main = () => {
               key: v.date,
               content: v.content,
               emotion: v.emotion,
-            });
+          });
           });
           console.log(diaryDay);
-          setData(res);
+          setData(diaryDay);
         })
         .catch((err) => {
           console.log(err);
@@ -142,6 +143,8 @@ const Main = () => {
     getDiary();
   }, []);
 
+  // console.log(data);
+
   return (
     <Wrapper>
       <Calendar
@@ -149,9 +152,10 @@ const Main = () => {
         value={value}
         onClickDay={clickHandler}
         tileClassName={({ date, view }) => {
-          if (diaryDay.find((x) => x.key === moment(date).format("YYYY. MM. DD"))) {
-            return diaryEmotion(date);
-          }
+          // console.log(data.find((x) => x.key))
+          // if (data.find((x) => x.key === moment(date).format("YYYY. MM. DD"))) {
+          //   return diaryEmotion(date);
+          // }
         }}
       />
     </Wrapper>

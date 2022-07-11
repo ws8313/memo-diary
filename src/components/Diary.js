@@ -52,12 +52,12 @@ const Wrapper = styled.div`
   }
   
   .textarea-Container {
-    height: 29rem;
+    height: 100vh
   }
 
   textarea {
     width: 100%;
-    height: 100%;
+    height: 29rem;
     padding: 0 0.4rem;
     box-sizing: border-box;
 
