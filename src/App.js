@@ -16,8 +16,8 @@ const getFontFunction = () => {
   } else {
     console.log("나눔 고딕 적용");
     return "Nanum Gothic";
-  }
-}
+  };
+};
 
 const AppContainer = styled.div`
   height: 100vh;

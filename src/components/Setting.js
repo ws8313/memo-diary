@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import styled from "styled-components";
@@ -37,6 +37,9 @@ const Setting = () => {
   const [password, setPassword] = useState("");
   const [font, setFont] = useState(getFontFunction());
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const settings = {
     password: password,
     font: font
@@ -45,26 +48,29 @@ const Setting = () => {
   const settingsString = JSON.stringify(settings);
 
 
-  const ClickHandler = () => {
+  const LockdownClickHandler = () => {
     if (Lockdown === false) {
       setLockdown(true);
     } else {
       setLockdown(false);
       setPassword("");
-    }
-  }
+    };
+  };
 
   const ChangeHandler = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const FontsHandler = (e) => {
-    setFont(e.target.value)
-  }
+    setFont(e.target.value);
+  };
 
-  // const ClickHandler = () => {
-    
-  // }
+  const ClickHandler = () => {
+    localStorage.setItem("setting", settingsString);
+    // navigate('/');
+    // location.pathname('/');
+    window.location.replace('/SettingPage');
+  };
 
   useEffect(() => {
     console.log(Lockdown);
@@ -73,7 +79,7 @@ const Setting = () => {
 
     console.log(JSON.parse(localStorage.getItem("setting".font)))
 
-    localStorage.setItem("setting", settingsString);
+    // localStorage.setItem("setting", settingsString);
   }, [Lockdown, password, font]);
 
   return (
@@ -85,7 +91,7 @@ const Setting = () => {
             <input 
               type="checkbox"
               id='Lockdown'
-              onClick={ClickHandler}
+              onClick={LockdownClickHandler}
             />
           </div>
           <div>
@@ -111,7 +117,7 @@ const Setting = () => {
             </span>
           </div>
           <div>
-            <a href='/'>설정 완료</a>
+            <button onClick={ClickHandler}>설정 완료</button>
           </div>
         </div>
       </div>

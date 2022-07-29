@@ -115,7 +115,7 @@ const Header = () => {
           >메뉴</button> */}
         </div>
         <div className="title">
-          <Link to="/">메모 {`&`} 다이어리</Link>
+          <a href="/">메모 {`&`} 다이어리</a>
         </div>
         <div className="end-header">
           <Link to="/SettingPage">설정</Link>
