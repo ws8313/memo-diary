@@ -21,12 +21,21 @@ const Wrapper = styled.div`
 `;
 
 const Setting = () => {
-  const getDefaultFont = JSON.parse(localStorage.getItem("setting"));
-  const defaultFont = getDefaultFont.font;
+  const getFont = JSON.parse(localStorage.getItem("setting"));
+
+  const getFontFunction = () => {
+    if (getFont) {
+      console.log(getFont.font);
+      return getFont.font;
+    } else {
+      console.log("나눔 고딕 적용");
+      return "Nanum Gothic";
+    }
+  }
 
   const [Lockdown, setLockdown] = useState(false);
   const [password, setPassword] = useState("");
-  const [font, setFont] = useState(defaultFont);
+  const [font, setFont] = useState(getFontFunction());
 
   const settings = {
     password: password,

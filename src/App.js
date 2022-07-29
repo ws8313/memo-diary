@@ -8,14 +8,23 @@ import SettingPage from './pages/SettingPage';
 import styled from 'styled-components';
 
 const getFont = JSON.parse(localStorage.getItem("setting"));
-const font = getFont.font;
+
+const getFontFunction = () => {
+  if (getFont) {
+    console.log(getFont.font);
+    return getFont.font;
+  } else {
+    console.log("나눔 고딕 적용");
+    return "Nanum Gothic";
+  }
+}
 
 const AppContainer = styled.div`
   height: 100vh;
   box-sizing: border-box;
 
   *, body {
-  font-family: ${font}, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: ${getFontFunction()}, "Nanum Gothic", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
