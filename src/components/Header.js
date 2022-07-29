@@ -19,16 +19,14 @@ const Wrapper = styled.div`
 
     border-bottom: 2px solid black;
 
-    .menu {
+    .menu, .end-header {
       flex: 1;
+      font-size: 1.5rem;
     }
 
     .title {
       flex: 5;
-    }
-
-    .end-header {
-      flex: 1;
+      font-size: 2rem;
     }
 
     a, button {
@@ -37,7 +35,7 @@ const Wrapper = styled.div`
       outline: 0;
       color: black;
       background-color: transparent;
-      font-size: 3rem;
+      /* font-size: 1.5rem; */
       font-weight: bold;
       cursor: pointer;
     }
@@ -119,7 +117,9 @@ const Header = () => {
         <div className="title">
           <Link to="/">메모 {`&`} 다이어리</Link>
         </div>
-        <div className="end-header"></div>
+        <div className="end-header">
+          <Link to="/SettingPage">설정</Link>
+        </div>
       </header>
       {/* <ul className={menuOpen ? "show-menu" : "hide-menu"}>
         <li>메모</li>
