@@ -33,7 +33,11 @@ const Setting = () => {
     }
   }
 
-  const [Lockdown, setLockdown] = useState(false);
+  const getPassword = () => {
+
+  }
+
+  const [lockdown, setLockdown] = useState(false);
   const [password, setPassword] = useState("");
   const [font, setFont] = useState(getFontFunction());
 
@@ -41,6 +45,7 @@ const Setting = () => {
   const location = useLocation();
 
   const settings = {
+    lockdown: lockdown,
     password: password,
     font: font
   };
@@ -49,7 +54,7 @@ const Setting = () => {
 
 
   const LockdownClickHandler = () => {
-    if (Lockdown === false) {
+    if (lockdown === false) {
       setLockdown(true);
     } else {
       setLockdown(false);
@@ -66,21 +71,24 @@ const Setting = () => {
   };
 
   const ClickHandler = () => {
+    if (lockdown) {
+      if (!password) {
+        alert("비밀번호를 입력해주세요.")
+      }
+    }
     localStorage.setItem("setting", settingsString);
-    // navigate('/');
-    // location.pathname('/');
     window.location.replace('/SettingPage');
   };
 
   useEffect(() => {
-    console.log(Lockdown);
+    console.log(lockdown);
     console.log(password);
     console.log(font);
 
     console.log(JSON.parse(localStorage.getItem("setting".font)))
 
     // localStorage.setItem("setting", settingsString);
-  }, [Lockdown, password, font]);
+  }, [lockdown, password, font]);
 
   return (
     <Wrapper>
@@ -99,7 +107,7 @@ const Setting = () => {
             <span>
               <input
                 type="text"
-                disabled={!Lockdown}
+                disabled={!lockdown}
                 onChange={ChangeHandler}
                 value={password}
               />
