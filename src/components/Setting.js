@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
 const Setting = () => {
   const getSetting = JSON.parse(localStorage.getItem("setting"));
-  
+
   const getFontFunction = () => {
     if (getSetting) {
       console.log(getSetting.font);
@@ -85,7 +85,7 @@ const Setting = () => {
     console.log(password);
     console.log(font);
 
-    console.log(JSON.parse(localStorage.getItem("setting".font)))
+    console.log(JSON.parse(localStorage.getItem("setting")));
 
     // localStorage.setItem("setting", settingsString);
   }, [lockdown, password, font]);
