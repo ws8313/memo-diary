@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import MainPage from './pages/MainPage';
@@ -7,12 +6,13 @@ import SettingPage from './pages/SettingPage';
 
 import styled from 'styled-components';
 
-const getFont = JSON.parse(localStorage.getItem("setting"));
+const getSetting = JSON.parse(localStorage.getItem("setting"));
 
 const getFontFunction = () => {
-  if (getFont) {
-    console.log(getFont.font);
-    return getFont.font;
+  if (getSetting) {
+    const getFont = getSetting.font;
+    console.log(getFont);
+    return getFont;
   } else {
     console.log("나눔 고딕 적용");
     return "Nanum Gothic";
