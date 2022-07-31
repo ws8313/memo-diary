@@ -21,12 +21,12 @@ const Wrapper = styled.div`
 `;
 
 const Setting = () => {
-  const getFont = JSON.parse(localStorage.getItem("setting"));
-
+  const getSetting = JSON.parse(localStorage.getItem("setting"));
+  
   const getFontFunction = () => {
-    if (getFont) {
-      console.log(getFont.font);
-      return getFont.font;
+    if (getSetting) {
+      console.log(getSetting.font);
+      return getSetting.font;
     } else {
       console.log("나눔 고딕 적용");
       return "Nanum Gothic";
