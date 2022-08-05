@@ -106,41 +106,41 @@ const Main = () => {
     }
   }
   
-  // for (let i = 0; i < localStorage.length; i++) {
-  //   const keys = localStorage.key(i);
-  //   const values = JSON.parse(localStorage.getItem(keys));
-  //   const contents = values.content;
-  //   const emotions = values.emotion;
+  for (let i = 0; i < localStorage.length; i++) {
+    const keys = localStorage.key(i);
+    const values = JSON.parse(localStorage.getItem(keys));
+    const contents = values.content;
+    const emotions = values.emotion;
     
-  //   if (contents !== null && contents !== "") {
-  //     diaryDay.push({
-  //       key: keys,
-  //       content: contents,
-  //       emotion: emotions,
-  //     });
-  //   }
-  // };
+    if (contents !== null && contents !== "") {
+      diaryDay.push({
+        key: keys,
+        content: contents,
+        emotion: emotions,
+      });
+    }
+  };
 
   useEffect(() => {
-    const getDiary = () => {
-      axios.get("http://localhost:8000/", {})
-        .then((res) => {
-          // console.log(res.data);
-          res.data.map(v => {
-            diaryDay.push({
-              key: v.date,
-              content: v.content,
-              emotion: v.emotion,
-          });
-          });
-          console.log(diaryDay);
-          setData(diaryDay);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-    getDiary();
+    // const getDiary = () => {
+    //   axios.get("http://localhost:8000/", {})
+    //     .then((res) => {
+    //       // console.log(res.data);
+    //       res.data.map(v => {
+    //         diaryDay.push({
+    //           key: v.date,
+    //           content: v.content,
+    //           emotion: v.emotion,
+    //       });
+    //       });
+    //       console.log(diaryDay);
+    //       setData(diaryDay);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     })
+    // }
+    // getDiary();
   }, []);
 
   // console.log(data);
@@ -152,10 +152,10 @@ const Main = () => {
         value={value}
         onClickDay={clickHandler}
         tileClassName={({ date, view }) => {
-          // console.log(data.find((x) => x.key))
-          // if (data.find((x) => x.key === moment(date).format("YYYY. MM. DD"))) {
-          //   return diaryEmotion(date);
-          // }
+          console.log(diaryDay.find((x) => x.key))
+          if (diaryDay.find((x) => x.key === moment(date).format("YYYY. MM. DD"))) {
+            return diaryEmotion(date);
+          }
         }}
       />
     </Wrapper>
