@@ -1,11 +1,11 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FiSettings } from "react-icons/fi";
 
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
-  
+
   .header {
     width: 100%;
     padding: 0 0.4rem;
@@ -14,39 +14,39 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
-
     height: 5rem;
-
     border-bottom: 2px solid black;
 
-    .menu, .end-header {
+    .menu,
+    .end-header {
       flex: 1;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      margin-top: 0.6rem;
+      margin-left: 1.4rem;
     }
 
     .title {
       flex: 5;
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
-    a, button {
+    a,
+    button {
       text-decoration: none;
       border: 0;
       outline: 0;
       color: black;
       background-color: transparent;
-      /* font-size: 1.5rem; */
       font-weight: bold;
       cursor: pointer;
     }
   }
 
-  li {
+  /* li {
     list-style: none;
-  }
+  } */
 
-  .show-menu {
-    /* width: 100%; */
+  /* .show-menu {
     height: 100%;
     position: absolute;
     left: 0px;
@@ -55,14 +55,13 @@ const Wrapper = styled.div`
   }
 
   .hide-menu{
-    /* width: 100%; */
     height: 100%;
     position: absolute;
     left: -100%;
     transition: 1s;
     z-index: 9;
-  }
-  
+  } */
+
   /* .toggle-menu {
     position: fixed;
     display: flex;
@@ -118,7 +117,9 @@ const Header = () => {
           <Link to="/">메모 {`&`} 다이어리</Link>
         </div>
         <div className="end-header">
-          <Link to="/SettingPage">설정</Link>
+          <Link to="/SettingPage">
+            <FiSettings />
+          </Link>
         </div>
       </header>
       {/* <ul className={menuOpen ? "show-menu" : "hide-menu"}>
@@ -138,7 +139,7 @@ const Header = () => {
         </div>
       </div> */}
     </Wrapper>
-  )
-}
+  );
+};
 
 export default Header;
