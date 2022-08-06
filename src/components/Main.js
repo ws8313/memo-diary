@@ -53,24 +53,40 @@ const Wrapper = styled.div`
     }
   }
 
-  .best {
-    background-color: #64c96499;
+  .joy {
+    background-color: #e9a03299;
   }
 
-  .good {
-    background-color: #9dd77299;
+  .happy {
+    background-color: #fff25199;
   }
 
-  .normal {
-    background-color: #fdce1799;
+  .heartFluttering {
+    background-color: #ff72ba99;
   }
 
-  .bad {
-    background-color: #fd844699;
+  .gloomy {
+    background-color: #c272ff99;
   }
 
-  .worst {
-    background-color: #fd565f99;
+  .sad {
+    background-color: #7283ff99;
+  }
+
+  .annoying {
+    background-color: #5c8f4f99;
+  }
+
+  .regret {
+    background-color: #56977c99;
+  }
+
+  .anger {
+    background-color: #e9636399;
+  }
+
+  .soso {
+    background-color: #a9cd6299;
   }
 `;
 
@@ -92,16 +108,24 @@ const Main = () => {
     const keys = moment(date).format("YYYY. MM. DD");
     const values = JSON.parse(localStorage.getItem(keys));
     const emotions = values.emotion;
-    if (emotions === "최고") {
-      return "best";
-    } else if (emotions === "좋음") {
-      return "good";
-    } else if (emotions === "보통") {
-      return "normal";
-    } else if (emotions === "나쁨") {
-      return "bad";
+    if (emotions === "기쁨") {
+      return "joy";
+    } else if (emotions === "행복") {
+      return "happy";
+    } else if (emotions === "설렘") {
+      return "heartFluttering";
+    } else if (emotions === "우울") {
+      return "gloomy";
+    } else if (emotions === "슬픔") {
+      return "sad";
+    } else if (emotions === "짜증") {
+      return "annoying";
+    } else if (emotions === "후회") {
+      return "regret";
+    } else if (emotions === "분노") {
+      return "anger";
     } else {
-      return "worst";
+      return "soso";
     }
   }
   

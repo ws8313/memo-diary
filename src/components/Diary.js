@@ -97,13 +97,13 @@ const Diary = () => {
   const getEmotion = () => {
     if (values) {
       if (values.content === "") {
-        return "최고";
+        return "기쁨";
       } else {
         const emotions = values.emotion;
         return emotions;
       }
     } else {
-      return "최고";
+      return "기쁨";
     }
   }
   
@@ -150,11 +150,15 @@ const Diary = () => {
               onChange={emotionChangeHandler}
               defaultValue={emotion}
             >
-              <option>최고</option>
-              <option>좋음</option>
-              <option>보통</option>
-              <option>나쁨</option>
-              <option>최악</option>
+              <option>기쁨</option>
+              <option>행복</option>
+              <option>설렘</option>
+              <option>슬픔</option>
+              <option>우울</option>
+              <option>분노</option>
+              <option>짜증</option>
+              <option>후회</option>
+              <option>무난</option>
             </select>
           </div>
         </div>
