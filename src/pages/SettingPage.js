@@ -7,7 +7,7 @@ const SettingPage = () => {
       <Header />
       <Setting />
     </>
-  )
-}
+  );
+};
 
 export default SettingPage;

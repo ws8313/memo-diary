@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 import styled from "styled-components";
 
@@ -11,29 +10,22 @@ const Wrapper = styled.div`
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     max-width: 500px;
     margin: 0 auto;
-  
     top: 0;
-  
     width: 100%;
     height: 640px;
     background-color: white;
-  
     z-index: 9;
 
     .loginFormContainer {
       width: 20rem;
       height: 25rem;
 
-      /* border: 1px solid black;
-      border-radius: 3rem; */
-
       .loginTitle {
         display: flex;
         justify-content: center;
-
         font-size: 1.4rem;
         font-weight: bold;
       }
@@ -41,7 +33,6 @@ const Wrapper = styled.div`
       .loginForm {
         display: flex;
         justify-content: center;
-
         margin-top: 4rem;
 
         .loginInput {
@@ -62,10 +53,8 @@ const Login = () => {
 
   const getLoginState = () => {
     if (lockdown || lockdown === null) {
-      console.log(lockdown);
       return true;
     } else {
-      console.log("로그인 필요 x", lockdown);
       return false;
     }
   };
@@ -77,10 +66,8 @@ const Login = () => {
 
   const getPassword = setting.password;
 
-  const navigate = useNavigate();
-
   const ChangeHandler = (e) => {
-    setPassword(e.target.value)
+    setPassword(e.target.value);
   };
 
   const ClickHandler = () => {
@@ -89,52 +76,41 @@ const Login = () => {
         sessionStorage.setItem("lockdown", false);
         setShowLogin(false);
       } else {
-        alert("비밀번호가 틀렸습니다.")
+        alert("비밀번호가 틀렸습니다.");
       }
     } else {
-      alert("비밀번호를 입력해주세요.")
+      alert("비밀번호를 입력해주세요.");
     }
-  }
+  };
 
-  useEffect(() => {
-    console.log(setting);
-    console.log(password);
-    console.log(getPassword);
-    console.log("로그인 필요?", showLogin);
-
-    console.log(lockdown);
-  }, [setting, password, getPassword, showLogin, lockdown]);
+  useEffect(() => {}, [setting, password, getPassword, showLogin, lockdown]);
 
   return (
     <Wrapper>
-      {
-        showLogin ?
-        <div className='loginContainer'>
-          <div className='loginFormContainer'>
-            <div className='loginTitle'>
+      {showLogin ? (
+        <div className="loginContainer">
+          <div className="loginFormContainer">
+            <div className="loginTitle">
               <div>비밀번호를 입력해주세요</div>
             </div>
-            <form className='loginForm'>
+            <form className="loginForm">
               <input
-                type='password'
-                className='loginInput'
-                autoComplete='off'
+                type="password"
+                className="loginInput"
+                autoComplete="off"
                 onChange={ChangeHandler}
               />
-              <button 
-                // type='submit'
-                className='loginButton'
-                onClick={ClickHandler}
-              >확인
+              <button className="loginButton" onClick={ClickHandler}>
+                확인
               </button>
             </form>
-          </div>           
+          </div>
         </div>
-        :
+      ) : (
         <></>
-      }
+      )}
     </Wrapper>
-  )
-}
+  );
+};
 
 export default Login;

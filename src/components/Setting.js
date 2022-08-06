@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 import styled from "styled-components";
 
@@ -8,31 +7,29 @@ const Wrapper = styled.div`
   height: 100%;
 
   .settingContainer {
-    /* display: flex; */
     width: 100%;
     height: 29rem;
     padding: 0 0.8rem;
     box-sizing: border-box;
-
     font-size: 1.2rem;
     line-height: 2.25rem;
     outline: none;
-
     resize: none;
     border: none;
+    background-image: repeating-linear-gradient(
+      white,
+      white 2.2rem,
+      #ccc 2.2rem,
+      #ccc 2.25rem
+    );
 
-    background-image:
-      repeating-linear-gradient(white, white 2.2rem, #ccc 2.2rem, #ccc 2.25rem);
-    
     div {
       display: flex;
       align-items: center;
       vertical-align: middle;
-      /* margin-top: 1.4rem; */
     }
 
     span {
-      /* font-size: 1.2rem; */
       font-weight: bold;
       margin-left: 1rem;
     }
@@ -63,21 +60,27 @@ const Wrapper = styled.div`
   }
 
   .settingButton {
+    width: 100%;
     position: fixed;
+    display: flex;
+    justify-content: center;
     z-index: 10;
-    right: 16rem;
-    bottom: 11rem;
+    bottom: 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.6rem;
+    box-sizing: border-box;
 
     button {
-      box-sizing: border-box;
       border: 1px solid black;
-      padding: 15px 20px;
-      border-radius: 25px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      padding: 1.2rem 2.8rem;
       background-color: white;
       color: black;
       cursor: pointer;
-      transition: .25s ease-in-out;
+      transition: 0.25s ease-in-out;
+      border-radius: 35px;
+      font-size: 1.2rem;
 
       :hover {
         background-color: black;
@@ -95,7 +98,7 @@ const Wrapper = styled.div`
       font-family: "Nanum Gothic";
     }
   }
-  
+
   .lockdown {
     display: none;
   }
@@ -114,6 +117,7 @@ const CheckBoxLabel = styled.label`
   border-radius: 15px;
   background: #bebebe;
   cursor: pointer;
+
   &::after {
     content: "";
     display: block;
@@ -133,6 +137,7 @@ const CheckBox = styled.input`
   border-radius: 15px;
   width: 42px;
   height: 26px;
+
   &:checked + ${CheckBoxLabel} {
     background: #4fbe79;
     &::after {
@@ -152,39 +157,31 @@ const Setting = () => {
 
   const getFontFunction = () => {
     if (getSetting) {
-      console.log(getSetting.font);
       return getSetting.font;
     } else {
-      console.log("나눔 고딕 적용");
       return "Nanum Gothic";
     }
-  }
+  };
 
   const getLockdownFunction = () => {
     if (getSetting) {
-      console.log(getSetting.lockdown);
       return getSetting.lockdown;
     } else {
-      console.log("잠금모드 설정 x");
       return false;
     }
-  }
+  };
 
   const [lockdown, setLockdown] = useState(getLockdownFunction());
   const [password, setPassword] = useState("");
   const [font, setFont] = useState(getFontFunction());
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const settings = {
     lockdown: lockdown,
     password: password,
-    font: font
+    font: font,
   };
 
   const settingsString = JSON.stringify(settings);
-
 
   const LockdownClickHandler = () => {
     if (lockdown === false) {
@@ -192,7 +189,7 @@ const Setting = () => {
     } else {
       setLockdown(false);
       setPassword("");
-    };
+    }
   };
 
   const ChangeHandler = (e) => {
@@ -206,38 +203,32 @@ const Setting = () => {
   const ClickHandler = () => {
     if (lockdown) {
       if (!password) {
-        alert("비밀번호를 입력해주세요.")
+        alert("비밀번호를 입력해주세요.");
       }
     }
     localStorage.setItem("setting", settingsString);
-    window.location.replace('/SettingPage');
+    window.location.replace("/SettingPage");
   };
 
-  useEffect(() => {
-    console.log(lockdown);
-    console.log(password);
-    console.log(font);
-
-    console.log(JSON.parse(localStorage.getItem("setting")));
-
-    // localStorage.setItem("setting", settingsString);
-  }, [lockdown, password, font]);
+  useEffect(() => {}, [lockdown, password, font]);
 
   return (
     <Wrapper>
-      <div className='settingContainer'>
+      <div className="settingContainer">
         <div>
           <span>잠금모드</span>
-          <span className='labelContainer'>
-            <CheckBox 
+          <span className="labelContainer">
+            <CheckBox
               type="checkbox"
-              id='Lockdown'
-              className='lockdown'
+              id="Lockdown"
+              className="lockdown"
               checked={lockdown}
               onClick={LockdownClickHandler}
             />
-            <CheckBoxLabel for='Lockdown' className='check_toggle'>
-            </CheckBoxLabel>
+            <CheckBoxLabel
+              for="Lockdown"
+              className="check_toggle"
+            ></CheckBoxLabel>
           </span>
         </div>
         <div>
@@ -251,25 +242,27 @@ const Setting = () => {
             />
           </span>
         </div>
-        <div className='fontContainer'>
+        <div className="fontContainer">
           <span>글꼴변경</span>
           <span>
-            <select
-              defaultValue={font}
-              onChange={FontsHandler}>
-              <option className='font1' value="Nanum Pen Script">나눔 손 글씨</option>
-              <option className='font2' value="Nanum Gothic">나눔 고딕</option>
+            <select defaultValue={font} onChange={FontsHandler}>
+              <option className="font1" value="Nanum Pen Script">
+                나눔 손 글씨
+              </option>
+              <option className="font2" value="Nanum Gothic">
+                나눔 고딕
+              </option>
             </select>
           </span>
         </div>
-        <div className='settingButton'>
-          <span>
-            <button onClick={ClickHandler}>저장</button>
-          </span>
-        </div>
+      </div>
+      <div className="settingButton">
+        <span>
+          <button onClick={ClickHandler}>저장</button>
+        </span>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 export default Setting;

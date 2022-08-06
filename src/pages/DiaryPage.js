@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Diary from '../components/Diary';
+import Diary from "../components/Diary";
 
 const DiaryPage = () => {
   return (
@@ -7,7 +7,7 @@ const DiaryPage = () => {
       <Header />
       <Diary />
     </>
-  )
-}
+  );
+};
 
 export default DiaryPage;
