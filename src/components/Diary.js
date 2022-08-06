@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 import styled from "styled-components";
 
@@ -127,10 +126,6 @@ const Diary = () => {
   }
 
   const clickHandler = () => {
-    axios.get("http://localhost:8000/", {})
-    .then(() => {
-      alert("완료");
-    });
   };
 
   useEffect(() => {
