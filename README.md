@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# 메모, 일기 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+프로젝트를 시작하게 된 이유는 메모와 일기를 작성함으로써 일상생활에 많은 도움을 받고 있고 그렇기 때문에 매일 일기를 작성하고 많은 메모를 작성하고 있습니다. 매일 많은 시간 사용하는 서비스를 직접 만들어보고 사용해보고 싶어서 프로젝트를 시작하게 되었습니다.
 
-## Available Scripts
+## 설명
 
-In the project directory, you can run:
+이 프로젝트는 사용자가 간단한 메모와 일기를 작성할 수 있는 웹 어플리케이션입니다. 사용자는 간단한 인터페이스를 통해 새로운 메모와 일기를 작성하고, 수정하며, 삭제할 수 있습니다.
 
-### `yarn start`
+## 배포 링크
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[배포 링크](https://memo-diary.netlify.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 설치 및 실행 방법
 
-### `yarn test`
+1. 이 레포지토리를 클론합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# 레포지토리 클론
+git clone https://github.com/ws8313/memo-diary.git
+```
 
-### `yarn build`
+2. 클론한 폴더로 이동하여 npm 패키지를 설치합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# 클론한 폴더로 이동
+cd memo-diary-service
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 패키지 설치
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. 어플리케이션을 실행합니다.
 
-### `yarn eject`
+```bash
+# 어플리케이션 실행
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. 브라우저에서 http://localhost:3000 으로 접속합니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 사용 방법
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. 어플리케이션에 접속합니다.
+2. 원하는 날짜를 달력에서 선택합니다.
+3. 선택한 날짜에 작성한 메모와 일기, 감정를 확인하거나, 새로운 메모와 일기, 감정을 작성합니다.
+4. 작성한 메모와 일기, 감정을 수정하거나, 삭제할 수 있습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 기능
 
-## Learn More
+- 달력
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - 일기를 작성한 날짜에 어떤 감정인지 색상으로 보여주기
+  - 달력에서 날짜 선택하기
+  - 선택한 날짜에 작성한 메모와 일기 보기
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 메모, 일기
 
-### Code Splitting
+  - 원하는 날짜에 메모, 일기, 감정 작성하기
+  - 원하는 날짜에 메모, 일기, 감정 수정하기
+  - 원하는 날짜에 메모, 일기, 감정 삭제하기
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 환경설정
+  - 비밀번호를 설정하여 잠금모드 변경하기
+  - 글꼴 변경하기
 
-### Analyzing the Bundle Size
+## 개발환경
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React
+- styled-components
+- react-calendar
+- moment
+- react-icons
