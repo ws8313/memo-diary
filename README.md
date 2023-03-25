@@ -23,7 +23,7 @@ git clone https://github.com/ws8313/memo-diary.git
 
 ```bash
 # 클론한 폴더로 이동
-cd memo-diary-service
+cd memo-diary
 
 # 패키지 설치
 npm install
