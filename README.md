@@ -70,7 +70,3 @@ npm start
 - react-calendar
 - moment
 - react-icons
-
-## 수상
-
-<img src="https://user-images.githubusercontent.com/87023889/227697084-ee442e0d-f2d2-4d48-afc8-a93666497cf7.png"  width="400" height="600">
